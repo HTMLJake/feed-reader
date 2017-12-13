@@ -72,6 +72,15 @@ $(function() {
           * clicked and does it hide when clicked again.
           */
 
+        it('visibility changes when icon clicked', function () {
+            $('body').toggleClass('menu-hidden');
+            expect(document.body.className).toBe('');
+            $('body').toggleClass('menu-hidden');
+            expect(document.body.className).toBe('menu-hidden');
+            
+        });
+    });
+
     /* TODO: Write a new test suite named "Initial Entries" */
 
         /* TODO: Write a test that ensures when the loadFeed
