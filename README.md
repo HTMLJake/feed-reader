@@ -11,4 +11,4 @@ This is a udacity project for using the jasmine.js test suite on a prebuilt feed
 
 ## Usage
 
-To run the application download or clone this git repository and open the `index.html` file.
+To run the application download or clone this git repository and open the `index.html` file with a modern web browser or go [here](http://jperrydev.com/feed-reader/).
