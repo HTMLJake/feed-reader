@@ -49,9 +49,9 @@ $(function() {
         });
 
         it('visibility changes when icon clicked', function () {
-            $('body').toggleClass('menu-hidden');
+            $('.menu-icon-link').click();
             expect(document.body.className).toBe('');
-            $('body').toggleClass('menu-hidden');
+            $('.menu-icon-link').click();
             expect(document.body.className).toBe('menu-hidden');
             
         });
@@ -59,13 +59,17 @@ $(function() {
 
     describe('Initial Entries', function () {
 
-        beforeEach(function (done) {
-            var entry = $('.feed').find('.entry');
-            expect(entry).toBeDefined();
-            done();
-        });
+        var entry;
 
+        beforeEach(function (done) {
+            loadFeed(0, function(){
+                entry = $('.feed').find('.entry');
+                done();
+            });
+        });
+        
         it('has single entry', function (done) {
+            expect(entry.length).toBeGreaterThan(0);
             done();
         })
 
@@ -77,12 +81,12 @@ $(function() {
         var nextTitle;
 
         beforeEach(function (done) {
-            loadFeed(0, function() {
-                initTitle = $('.header-title').text();
-            });
             loadFeed(1, function() {
-                nextTitle = $('.header-title').text();
-                done();
+                initTitle = $('.entry:first').text();
+                loadFeed(0, function() {
+                    nextTitle = $('.entry:first').text();
+                    done();
+                });
             });
         });
         
