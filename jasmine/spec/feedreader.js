@@ -45,14 +45,14 @@ $(function() {
     describe('The menu', function () {
         
          it('is hidden by default', function () {
-            expect(document.body.className).toBe('menu-hidden');
+            expect(document.body.className).toContain('menu-hidden');
         });
 
         it('visibility changes when icon clicked', function () {
             $('.menu-icon-link').click();
-            expect(document.body.className).toBe('');
+            expect(document.body.className).not.toContain('menu-hidden');
             $('.menu-icon-link').click();
-            expect(document.body.className).toBe('menu-hidden');
+            expect(document.body.className).toContain('menu-hidden');
             
         });
     });
@@ -70,8 +70,7 @@ $(function() {
         
         it('has single entry', function (done) {
             expect(entry.length).toBeGreaterThan(0);
-            done();
-        })
+        });
 
     });
 
