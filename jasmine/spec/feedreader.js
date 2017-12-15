@@ -28,15 +28,13 @@ $(function() {
 
         it('has URL', function () {
             allFeeds.forEach(feed => {
-                expect(feed.url).toBeDefined();
-                expect(feed.url).not.toBe("");
+                expect(feed.url).toBeTruthy();
             }); 
         });
 
         it('has name', function () {
             allFeeds.forEach(feed => {
-                expect(feed.name).toBeDefined();
-                expect(feed.name).not.toBe("");
+                expect(feed.name).toBeTruthy();
             }); 
         });
     });
@@ -45,14 +43,14 @@ $(function() {
     describe('The menu', function () {
         
          it('is hidden by default', function () {
-            expect(document.body.className).toContain('menu-hidden');
+            expect($('body').hasClass("menu-hidden")).toBe(true);
         });
 
         it('visibility changes when icon clicked', function () {
             $('.menu-icon-link').click();
-            expect(document.body.className).not.toContain('menu-hidden');
+            expect($('body').hasClass("menu-hidden")).toBe(false);
             $('.menu-icon-link').click();
-            expect(document.body.className).toContain('menu-hidden');
+            expect($('body').hasClass("menu-hidden")).toBe(true);
             
         });
     });
@@ -63,13 +61,14 @@ $(function() {
 
         beforeEach(function (done) {
             loadFeed(0, function(){
-                entry = $('.feed').find('.entry');
+                entry = $('.feed .entry');
                 done();
             });
         });
         
         it('has single entry', function (done) {
             expect(entry.length).toBeGreaterThan(0);
+            done();
         });
 
     });
@@ -81,9 +80,9 @@ $(function() {
 
         beforeEach(function (done) {
             loadFeed(1, function() {
-                initTitle = $('.entry:first').text();
+                initTitle = $('.entry').html();
                 loadFeed(0, function() {
-                    nextTitle = $('.entry:first').text();
+                    nextTitle = $('.entry').html();
                     done();
                 });
             });
